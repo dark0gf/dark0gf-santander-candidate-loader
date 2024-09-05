@@ -1,0 +1,27 @@
+<div>
+  <h1 class="app-flex-center text-2xl mb-4">Load candidates</h1>
+  <div class="app-flex-center flex-col">
+    <app-input [control]="getFormControl('name')" label="Name"/>
+    <app-input [control]="getFormControl('surname')" label="Surname"/>
+    <div class="app-flex-center">
+      <app-selectbox-input class="mr-2" [control]= "getFormControl('seniority')" label="Seniority" [items]="SENIORITY_OPTIONS"/>
+      <app-input class="mr-2" type="number" [control]="getFormControl('years')" label="Years"/>
+      <app-checkbox-input [control]="getFormControl('availability')" label="Availability"/>
+    </div>
+    <div class="app-flex-center">
+      <button mat-stroked-button (click)="submit()">
+        Submit
+      </button>
+    </div>
+  </div>
+
+  <h1 class="app-flex-center text-2xl mb-4">All candidates:</h1>
+  <div *ngFor="let candidate of ($candidates | async)" class="flex" >
+    <div class="mr-2">Name: {{candidate.name}}</div>
+    <div class="mr-2">Surname: {{candidate.surname}}</div>
+    <div class="mr-2">Seniority: {{candidate.seniority}}</div>
+    <div class="mr-2">Years: {{candidate.years}}</div>
+    <div>Availability: {{candidate.availability}}</div>
+  </div>
+</div>
+
